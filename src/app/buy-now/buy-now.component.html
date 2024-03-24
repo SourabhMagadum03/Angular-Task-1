@@ -1,0 +1,82 @@
+
+<div class="container">
+  <div class="row">
+   
+   <div class="col-lg-3 mb-5 mt-3 text-left col-sm-4" *ngFor="let prod of AllProductArry; let  i = index">
+     <mat-card class="example-card" >
+      
+       <img mat-card-image class="img-fluid hover-zoom ripple ripple-surface ripple-surface-light img-thumbnail img" [src]="prod.productImg" alt="Photo of a Shiba Inu">
+       <mat-card-content>
+         <h6 class="mt-1">Pro.Name : <span class="font-weight-bold ">{{prod.productNam}}</span> </h6>
+         
+         <h6>Price :  {{prod.productPri | currency:'INR'}}</h6>
+         <div class="btn-group " role="group" aria-label="Basic example">
+           <button type="button" class="btn btn-outline-dark mb-2" (click)="dec(prod)">-</button>
+           <input class="btn border border-dark mb-2" [(ngModel)]="prod.productQun" type="button" [value]="prod.productQun + 0 ">
+           <button type="button" class="btn btn-outline-dark mb-2" (click)="inc(prod)">+</button>
+         </div>
+         <div class="d-flex justify-content-between mb-2">
+           
+           <div class="ms-auto text-warning">
+             <i class="fa fa-star"> 4.3</i>
+           </div>
+         </div>
+         <span  class="my-loader"> <mat-icon>favorite_border</mat-icon></span>
+         <!-- <span class=" me-loader  mb-2 ml-1" (click)="deleteProduct(prod.id)"><mat-icon>clear</mat-icon></span>           -->
+       </mat-card-content>
+       <mat-card-actions >
+         <button  type="button" class="btn btn-block  btn-primary mb-2 ml-1" [disabled]="prod.productQun == 0" (click)="addProduct(prod,prod.id)">Add Bag</button>          
+       
+       </mat-card-actions>
+     </mat-card>
+
+     
+   
+   </div>
+        
+ 
+  </div>
+  <h4 class="mb-4">My Shopping Bag</h4>
+  <div class="row">
+  
+   <ng-container *ngIf="TabProductArry.length; else elseNoUser">
+   <table class="table table-hover">
+     
+     <thead>
+       <tr>
+         <th scope="col">Product Name</th>
+         <th scope="col">Qunantity</th>
+         <th scope="col">Price Details</th>
+         <th scope="col">order Total</th>
+         <th scope="col">Action</th>
+         
+       </tr>
+     </thead>
+     <tbody *ngFor="let pro of TabProductArry; index as i">
+       <tr >
+         <td>{{pro.productNam}}</td>
+         <td>{{pro.productQun}}</td>
+         <td>{{pro.productPri | currency:'INR'}}</td>
+         <td>{{pro.productQun * pro.productPri | currency:'INR' }}</td>
+         <td><button class="btn" (click)="deletCard(i,pro.productTotalPri)"><mat-icon>clear</mat-icon></button></td>
+       </tr>
+      
+     </tbody>
+     <tbody>
+       <tr>
+         <td></td>
+         <td></td>
+         <td>Total Price :</td>
+         <td> {{allprice - deltprice  | currency:'INR' }}</td>
+         <td></td>
+       </tr>
+     </tbody>
+   </table>
+  </ng-container>
+  <ng-template #elseNoUser>
+    <h6>There are no Bag Added. Please add Bag</h6>
+  </ng-template>
+ </div>
+     
+   </div>
+

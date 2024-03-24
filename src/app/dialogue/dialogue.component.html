@@ -1,0 +1,39 @@
+
+<div class="form-wrapper wrapper example-container ">
+  <mat-dialog-content>
+    <form [formGroup]="myProductForm" (submit)="createProduct()">
+         <div class="form-group mb-2">
+            <mat-form-field appearance="outline">
+               <mat-label>Product image</mat-label>
+               <input matInput formControlName="productImg" type="text" class="form-control" placeholder="Add Product image">
+               <mat-hint>Image size Max allowed limit is 100kb</mat-hint>
+            </mat-form-field>
+              <span class="small text-danger" *ngIf="(myProductForm.get('productImg').touched && !myProductForm.get('productImg').valid) || (submitted && !myProductForm.get('productImg').valid)">Image is Required !</span>
+        </div>
+        <div class="form-group mb-2">
+          
+            <mat-form-field appearance="outline">
+                <mat-label>Product name</mat-label>
+                <input matInput formControlName="productNam" type="text" class="form-control" placeholder="Ex. watch">
+            </mat-form-field>
+                <span class="small text-danger" *ngIf="(myProductForm.get('productNam').touched && !myProductForm.get('productNam').valid) || (submitted && !myProductForm.get('productNam').valid)">Product Name is Required !</span>
+        </div>
+        <div class="form-group mb-2">
+         
+           <mat-form-field floatLabel="always" appearance="outline">
+               <mat-label>Product price</mat-label>
+                <input matInput formControlName="productPri" type="number" class=" example-right-align" placeholder="Ex.1290">
+               <span matTextPrefix>&#8377;</span>
+               <span matTextSuffix>.00</span>
+                <span class="small text-danger" *ngIf="(myProductForm.get('productPri').touched && !myProductForm.get('productPri').valid) || (submitted && !myProductForm.get('productPri').valid)">Product Price is Required !</span>
+           </mat-form-field>
+        </div>
+         <div class="form-group  mb-2">
+           <button class="btn btn-primary btn-sm w-35" [disabled]="!myProductForm.valid" mat-dialog-close type="submit">Add Product</button>
+           <button class="btn btn-danger btn-sm w-35 ml-2" mat-dialog-close type="button">Cancel</button>
+          </div>
+       </form>
+   </mat-dialog-content>
+ </div>
+ 
+     
